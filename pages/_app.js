@@ -1,5 +1,5 @@
 import "../styles/globals.css";
-import "materialize-css";
+// import "materialize-css";
 
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />;
