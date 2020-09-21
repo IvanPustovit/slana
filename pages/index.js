@@ -1,5 +1,7 @@
 import Head from "next/head";
+import Footer from "../components/Footer";
 import Header from "../components/Header";
+import ShopMain from "../components/ShopMain";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
@@ -13,7 +15,8 @@ export default function Home() {
       </Head>
       <div className="container">
         <Header />
-        <h1>Hello</h1>
+        <ShopMain />
+        <Footer />
       </div>
     </>
   );
