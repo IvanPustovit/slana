@@ -1,6 +1,6 @@
-const Footer = () => {
+function Footer() {
   return (
-    <div>
+    <div className="container">
       <footer className="page-footer brown lighten-1">
         <div className="container">
           <div className="row">
@@ -50,6 +50,6 @@ const Footer = () => {
       </footer>
     </div>
   );
-};
+}
 
 export default Footer;

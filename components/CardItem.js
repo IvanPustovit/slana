@@ -1,7 +1,7 @@
 import formatMoney from "@jlozovei/format-money";
 import Link from "next/link";
 
-const CardItem = () => {
+function CardItem() {
   return (
     <li className="col s12 l4 ">
       <div className="card fix">
@@ -23,7 +23,7 @@ const CardItem = () => {
 
         <p className="card-price">
           {formatMoney({
-            value: "item.price",
+            value: 200,
             currencyCode: "UAH",
             locale: "UA",
           })}
@@ -31,6 +31,6 @@ const CardItem = () => {
       </div>
     </li>
   );
-};
+}
 
 export default CardItem;

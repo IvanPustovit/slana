@@ -1,8 +1,8 @@
 import CardItem from "./CardItem";
 
-const ShopMain = () => {
+function ShopMain() {
   return (
-    <div className="row">
+    <div className="row container">
       <ul className="col s12 m12">
         {/* {listItem.map((item) => ( */}
         <CardItem />
@@ -11,6 +11,6 @@ const ShopMain = () => {
       </ul>
     </div>
   );
-};
+}
 
 export default ShopMain;
