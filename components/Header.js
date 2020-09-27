@@ -65,7 +65,7 @@ function HeaderApp({ children }) {
               {/* )} */}
               {/* {!user.isAuth && ( */}
               <li>
-                <Link href="/">
+                <Link href="/auth/login">
                   <a>Увійти</a>
                 </Link>
               </li>

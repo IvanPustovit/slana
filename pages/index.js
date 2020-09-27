@@ -5,18 +5,12 @@ import Footer from "../components/Footer";
 import HeaderApp from "../components/Header";
 import ShopMain from "../components/ShopMain";
 import styles from "../styles/Home.module.css";
+import { useEffect } from "react";
 
 export default function Home({ cards }) {
   return (
     <>
-      <Head>
-        <title>Slana-вишивка</title>
-
-        <link
-          href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet"
-        />
-      </Head>
+      <Head></Head>
       <div>
         <HeaderApp />
         <ShopMain cards={cards} />
@@ -28,7 +22,6 @@ export default function Home({ cards }) {
 
 export async function getServerSideProps() {
   const { db } = await connectToDatabase();
-
   const cards = await db.collection("itemshops").find({}).toArray();
 
   return {
