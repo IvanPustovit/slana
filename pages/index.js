@@ -1,11 +1,12 @@
 import Head from "next/head";
 import Link from "next/link";
+import { connectToDatabase } from "../util/mongodb";
 import Footer from "../components/Footer";
 import HeaderApp from "../components/Header";
 import ShopMain from "../components/ShopMain";
 import styles from "../styles/Home.module.css";
 
-export default function Home() {
+export default function Home({ cards }) {
   return (
     <>
       <Head>
@@ -18,9 +19,21 @@ export default function Home() {
       </Head>
       <div>
         <HeaderApp />
-        <ShopMain />
+        <ShopMain cards={cards} />
         <Footer />
       </div>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const { db } = await connectToDatabase();
+
+  const cards = await db.collection("itemshops").find({}).toArray();
+
+  return {
+    props: {
+      cards: JSON.parse(JSON.stringify(cards)),
+    },
+  };
 }

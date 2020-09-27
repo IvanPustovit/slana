@@ -11,6 +11,7 @@
     "@jlozovei/format-money": "^1.1.0",
     "material-icons": "^0.3.1",
     "materialize-css": "^1.0.0",
+    "mongodb": "^3.6.2",
     "mongoose": "^5.10.6",
     "next": "9.5.3",
     "react": "16.13.1",
