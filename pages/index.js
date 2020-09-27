@@ -1,11 +1,8 @@
 import Head from "next/head";
-import Link from "next/link";
 import { connectToDatabase } from "../util/mongodb";
 import Footer from "../components/Footer";
 import HeaderApp from "../components/Header";
 import ShopMain from "../components/ShopMain";
-import styles from "../styles/Home.module.css";
-import { useEffect } from "react";
 
 export default function Home({ cards }) {
   return (

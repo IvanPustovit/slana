@@ -26,7 +26,7 @@ export default function login() {
           html: `Невірно введено email або пароль`,
         });
       }
-      localStorage.setItem("user", user);
+      localStorage.setItem("user", JSON.stringify(user));
       router.push("/");
     } catch (error) {}
   };

@@ -1,6 +1,23 @@
 import Link from "next/link";
+import { useState, useEffect } from "react";
+import getStart from "../helpers/getStart";
 
 function HeaderApp({ children }) {
+  const [user, setUser] = useState();
+  const [isAuth, setIsAuth] = useState(false);
+
+  useEffect(() => {
+    const userStor = localStorage.getItem("user");
+    if (!userStor) {
+      return;
+    }
+    getStart(
+      "http://localhost:3000/api/getUsers",
+      "POST",
+      JSON.stringify(userStor)
+    ).then((res) => setUser(res));
+    setIsAuth(true);
+  }, []);
   return (
     <>
       <div className="container">
@@ -9,14 +26,14 @@ function HeaderApp({ children }) {
             Сайт на стадії розробки, може не працювати увесь функціонал
           </p>
           <div className="nav-wrapper">
-            {/* {user.isAuth && ( */}
-            <p className="hello">
-              Вітамо{" "}
-              <Link href="/profile">
-                <a className="name-user">"user.userNam"</a>
-              </Link>
-            </p>
-            {/* )} */}
+            {isAuth && (
+              <p className="hello">
+                Вітамо{" "}
+                <Link href="/profile">
+                  <a className="name-user">{user.name}</a>
+                </Link>
+              </p>
+            )}
             <Link href="/">
               <a className="brand-logo logo-pad ">
                 <img
@@ -52,24 +69,24 @@ function HeaderApp({ children }) {
                   </a>
                 </Link>
               </li>
-              {/* {user.isAuth && ( */}
-              <li>
-                <Link href="/">
-                  <a
-                  //   onClick={logoutHandler}
-                  >
-                    Вийти
-                  </a>
-                </Link>
-              </li>
-              {/* )} */}
-              {/* {!user.isAuth && ( */}
-              <li>
-                <Link href="/auth/login">
-                  <a>Увійти</a>
-                </Link>
-              </li>
-              {/* )} */}
+              {isAuth && (
+                <li>
+                  <Link href="/">
+                    <a
+                    //   onClick={logoutHandler}
+                    >
+                      Вийти
+                    </a>
+                  </Link>
+                </li>
+              )}
+              {!isAuth && (
+                <li>
+                  <Link href="/auth/login">
+                    <a>Увійти</a>
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
         </nav>
