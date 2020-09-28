@@ -10,12 +10,14 @@
   "dependencies": {
     "@jlozovei/format-money": "^1.1.0",
     "bcryptjs": "^2.4.3",
+    "cookie": "^0.4.1",
     "jsonwebtoken": "^8.5.1",
     "material-icons": "^0.3.1",
     "materialize-css": "^1.0.0",
     "mongodb": "^3.6.2",
     "mongoose": "^5.10.7",
     "next": "9.5.3",
+    "next-cookies": "^2.0.3",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   }

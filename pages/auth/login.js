@@ -2,6 +2,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import getConfig from "next/config";
+import { useMyContext } from "../../helpers/context";
 const { publicRuntimeConfig } = getConfig();
 const { API_URL } = publicRuntimeConfig;
 
@@ -9,6 +10,7 @@ const { API_URL } = publicRuntimeConfig;
 
 export default function login() {
   const router = useRouter();
+  const { setUserId } = useMyContext();
 
   const [form, setForm] = useState();
   const [loading, setloading] = useState(false);
@@ -29,7 +31,9 @@ export default function login() {
           html: `Невірно введено email або пароль`,
         });
       }
+      setUserId(user);
       localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("Cart", JSON.stringify([]));
       router.push("/");
     } catch (error) {}
   };

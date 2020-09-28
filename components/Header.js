@@ -8,6 +8,13 @@ const { API_URL } = publicRuntimeConfig;
 function HeaderApp({ children }) {
   const [user, setUser] = useState({});
   const [isAuth, setIsAuth] = useState(false);
+  const [countOrder, setCountOrder] = useState(0);
+
+  const logoutHandler = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("Cart");
+    setIsAuth(false);
+  };
 
   useEffect(() => {
     const userStor = localStorage.getItem("user");
@@ -20,7 +27,7 @@ function HeaderApp({ children }) {
       JSON.stringify(userStor)
     ).then((res) => setUser(res));
     setIsAuth(true);
-  }, []);
+  }, [isAuth]);
   return (
     <>
       <div className="container">
@@ -60,7 +67,7 @@ function HeaderApp({ children }) {
                 </Link>
               </li>
               <li>
-                <Link href={`/shop/`}>
+                <Link href={`/`}>
                   <a name="Рушники">Рушники</a>
                 </Link>
               </li>
@@ -68,18 +75,14 @@ function HeaderApp({ children }) {
                 <Link href="/cart">
                   <a className="count">
                     <i className=" material-icons medium">add_shopping_cart</i>
-                    <span className="cou">"auth.countCart"</span>
+                    <span className="cou">{countOrder}</span>
                   </a>
                 </Link>
               </li>
               {isAuth && (
                 <li>
                   <Link href="/">
-                    <a
-                    //   onClick={logoutHandler}
-                    >
-                      Вийти
-                    </a>
+                    <a onClick={logoutHandler}>Вийти</a>
                   </Link>
                 </li>
               )}

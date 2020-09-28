@@ -6,6 +6,7 @@ const UserSchema = new mongoose.Schema({
   password: { type: String, required: true },
   name: { type: String, required: true },
   orders: [{ type: ObjectId, ref: "Order" }],
+  tempCart: [{ type: Object }],
 });
 
 module.exports = mongoose.models.User || mongoose.model("User", UserSchema);

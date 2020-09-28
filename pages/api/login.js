@@ -17,5 +17,7 @@ export default async (req, res) => {
   const token = jwt.sign({ userId: data._id }, "jwtSecret", {
     expiresIn: "1h",
   });
+
   res.json({ token, userId: data._id });
 };
+

@@ -7,6 +7,7 @@ import Loader from "../components/Loader";
 import { connectToDatabase } from "../util/mongodb";
 import HeaderApp from "../components/Header";
 import Footer from "../components/Footer";
+import { useMyContext } from "../helpers/context";
 
 export const STOREGE_CART = "Cart";
 
@@ -15,6 +16,7 @@ export default function itemId({ ...cards }) {
   const card = cards.cards[0];
   const [data, setData] = useState({});
   const [isAuth, setIsAuth] = useState();
+  const { setCartCnx } = useMyContext();
 
   function isEmpty(obj) {
     for (let key in obj) {
@@ -32,12 +34,9 @@ export default function itemId({ ...cards }) {
   };
 
   const submitToCart = (e) => {
-    let storage = localStorage.getItem(STOREGE_CART);
-    if (!storage) {
-      localStorage.setItem(STOREGE_CART, []);
-    }
-    // storage = getStor(STOREGE_CART);
+    let storage = JSON.parse(localStorage.getItem(STOREGE_CART));
     const order = { ...card, ...data, amountInCart: 1 };
+    setCartCnx(order);
     const n = storage.find(
       (el) => el.color === data.color && el.size === data.size
     );
@@ -45,12 +44,13 @@ export default function itemId({ ...cards }) {
       const index = storage.indexOf(n);
       storage[index] = { ...n, amountInCart: n.amountInCart + 1 };
       M.toast({ html: "Товар добавлено в корзину!" });
-      return localStorage.setItem(STOREGE_CART, storage);
+      router.push("/");
+      return    localStorage.setItem(STOREGE_CART, JSON.stringify(storage));
     }
 
     storage.push(order);
-    localStorage.setItem(STOREGE_CART, storage.sort(byField("name")));
-    // auth.totalOrder();
+    const storFilter = storage.sort(byField("name"));
+    localStorage.setItem(STOREGE_CART, JSON.stringify(storFilter));
     M.toast({ html: "Товар добавлено в корзину!" });
     router.push("/");
   };

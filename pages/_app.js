@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { MyContextProvider } from "../helpers/context";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
@@ -16,9 +17,11 @@ function MyApp({ Component, pageProps }) {
           href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
         />
       </Head>
-      <div className="root">
-        <Component {...pageProps} />
-      </div>
+      <MyContextProvider>
+        <div className="root">
+          <Component {...pageProps} />
+        </div>
+      </MyContextProvider>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     </>
   );
