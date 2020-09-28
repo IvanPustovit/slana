@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import getStart from "../helpers/getStart";
+import { BASE_URL } from "../constants";
 
 function HeaderApp({ children }) {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState({});
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
@@ -12,7 +13,7 @@ function HeaderApp({ children }) {
       return;
     }
     getStart(
-      "http://localhost:3000/api/getUsers",
+      `${BASE_URL}/api/getUsers`,
       "POST",
       JSON.stringify(userStor)
     ).then((res) => setUser(res));
