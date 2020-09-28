@@ -1,7 +1,9 @@
 import Link from "next/link";
+import getConfig from "next/config";
 import { useState, useEffect } from "react";
 import getStart from "../helpers/getStart";
-import { BASE_URL } from "../constants";
+const { publicRuntimeConfig } = getConfig();
+const { API_URL } = publicRuntimeConfig;
 
 function HeaderApp({ children }) {
   const [user, setUser] = useState({});
@@ -13,7 +15,7 @@ function HeaderApp({ children }) {
       return;
     }
     getStart(
-      `${BASE_URL}/api/getUsers`,
+      `${API_URL}/api/getUsers`,
       "POST",
       JSON.stringify(userStor)
     ).then((res) => setUser(res));

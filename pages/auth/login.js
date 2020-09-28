@@ -1,7 +1,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { BASE_URI } from "../../constants";
+import getConfig from "next/config";
+const { publicRuntimeConfig } = getConfig();
+const { API_URL } = publicRuntimeConfig;
+
 // import { connectToDatabase } from "../../util/mongodb";
 
 export default function login() {
@@ -16,7 +19,7 @@ export default function login() {
 
   const loginHandler = async () => {
     try {
-      const response = await fetch(`${BASE_URI}/api/login`, {
+      const response = await fetch(`${API_URL}/api/login`, {
         method: "POST",
         body: JSON.stringify(form),
       });

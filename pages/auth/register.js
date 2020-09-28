@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import {BASE_URI} from "../../constants";
-
+import getConfig from "next/config";
+const { publicRuntimeConfig } = getConfig();
+const { API_URL } = publicRuntimeConfig;
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -15,7 +16,7 @@ export default function RegisterPage() {
 
   const registerHandler = async () => {
     try {
-      const response = await fetch(`${BASE_URI}/api/register`, {
+      const response = await fetch(`${API_URL}/api/register`, {
         method: "POST",
         body: JSON.stringify(form),
       });
